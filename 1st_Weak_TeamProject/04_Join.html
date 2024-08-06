@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슈퍼 I들</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            font-family: "Black Han Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+        }
+
+        .swiper {
+            padding-top: 00px;
+        }
+
+        .mySwiper {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .icon {
+            height: 80px;
+        }
+
+        .TeamName {
+            font-size: 55px;
+            margin-left: -152px;
+        }
+
+        .LoginBar {
+            margin-right: -152px;
+        }
+
+        .Menutext {
+            color: white;
+
+            font-size: 30px;
+            margin: 40px 0px 0px 50px;
+            text-align: center;
+            word-spacing: 230px;
+        }
+
+        .Menutext a {
+            color: white;
+            text-decoration-line: none;
+        }
+
+        .Menutext ul {
+            text-align: center;
+        }
+
+        .Menutext li {
+            display: inline-block;
+        }
+
+        #JoinText {
+            color: #636363;
+        }
+
+        .MemberBackgroundImg {
+            object-fit: cover;
+            width: 1200px;            
+            height: 1200px;                        
+            margin: 0px auto 0px auto;
+        }
+        
+        .MemberImg {
+            object-fit: cover;
+            width: 320px;            
+            height: 300px;                        
+            margin: -1185px 0px 0px 360px;
+        }
+        
+        #MemberTextBox_Name {
+            background-color: gray;
+            width: 400px;
+            margin: -250px 0px 0px 700px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_WorkStyle {
+            background-color: gray;
+            width: 400px;
+            margin: -76px 0px 0px 1120px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_MBTI {
+            background-color: gray;
+            width: 400px;
+            margin: 50px 0px 0px 700px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_Intro {
+            background-color: gray;
+            width: 400px;
+            margin: -76px 0px 0px 1120px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_Adv {
+            background-color: gray;
+            width: 400px;
+            margin: 50px 0px 0px 700px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_Git {
+            background-color: gray;
+            width: 400px;
+            margin: -76px 0px 0px 1120px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_Game {
+            background-color: gray;
+            width: 400px;
+            margin: 50px 0px 0px 700px;
+            padding: 10px 0px 0px 0px;
+        }
+        #MemberTextBox_Blog {
+            background-color: gray;
+            width: 400px;
+            margin: -76px 0px 0px 1120px;
+            padding: 10px 0px 0px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Headers -->
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <div class="TeamName">
+                        <li><a href="#" class="nav-link px-2 text-danger">Super I들</a></li>
+                    </div>
+                </ul>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="ID">
+                    <input type="ID" class="form-control form-control-dark text-bg-dark" placeholder="ID..."
+                        aria-label="ID">
+                </form>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="PW">
+                    <input type="PW" class="form-control form-control-dark text-bg-dark" placeholder="PW..."
+                        aria-label="PW">
+                </form>
+                <div class="LoginBar">
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2">Login</button>
+                        <button type="button" class="btn btn-danger">Sign-up</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <div class="Menutext">
+                    <ul>
+                        <li><a href="01_Home.html" Id="HomeText">Home</a></li>
+                        <li><a href="02_Team.html" Id="TeamText">Team</a></li>
+                        <li><a href="03_Members.html" Id="MembersText">Members</a></li>
+                        <li><a href="04_Join.html" Id="JoinText">Join</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Join Member -->
+    <div class="MemberBackgroundImg">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJEAmgMBIgACEQEDEQH/xAAVAAEBAAAAAAAAAAAAAAAAAAAAB//EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AuIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z">
+    </div>
+    <div class="MemberImg">
+        <img src="https://us.123rf.com/450wm/claudiodivizia/claudiodivizia1701/claudiodivizia170100048/70092411-%EB%B0%B0%EA%B2%BD-%EC%84%B8%EB%A1%9C%EB%A1%9C-%EC%9C%A0%EC%9A%A9%ED%95%9C-%EC%A7%99%EC%9D%80-%ED%9A%8C%EC%83%89-%EC%83%89%EC%A7%80.jpg">
+    </div>
+    <div class="card" id="MemberTextBox_Name">
+        <div class="card-body">
+            <h5 class="card-title">이름</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_WorkStyle">
+        <div class="card-body">
+            <h5 class="card-title">협업 스타일</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_MBTI">
+        <div class="card-body">
+            <h5 class="card-title">MBTI</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_Intro">
+        <div class="card-body">
+            <h5 class="card-title">자기 소개</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_Adv">
+        <div class="card-body">
+            <h5 class="card-title">장점</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_Git">
+        <div class="card-body">
+            <h5 class="card-title">깃허브</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_Game">
+        <div class="card-body">
+            <h5 class="card-title">좋아하는 게임</h5>
+        </div>
+    </div>
+    <div class="card" id="MemberTextBox_Blog">
+        <div class="card-body">
+            <h5 class="card-title">블로그</h5>
+        </div>
+    </div>
+</body>
+</html>
