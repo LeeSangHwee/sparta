@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script src="../static/firebase2.js" type="module"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         /* 구글 폰트 import url 넣어주세요. */
         /* 구글 폰트 CSS rules를 전체 적용해 주세요. */
@@ -266,6 +266,70 @@
             color: white;
         }
     </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7NQM6XOTHUXPlJW3Lyb4rEXpkISbtdtI",
+            authDomain: "sparta-622b5.firebaseapp.com",
+            projectId: "sparta-622b5",
+            storageBucket: "sparta-622b5.appspot.com",
+            messagingSenderId: "215731223046",
+            appId: "1:215731223046:web:1f0f6a464a77e176e26187",
+            measurementId: "G-BDEQHQ5263"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        $("#postingbtn").click(async function () {
+            let image = $('#image').val();
+            let title = $('#title').val();
+            let star = $('#star').val();
+            let comment = $('#comment').val();
+
+            let doc = {
+                'image': image,
+                'title': title,
+                'star': star,
+                'comment': comment
+            };
+            await addDoc(collection(db, "foods"), doc);
+            alert('저장 완료!');
+            window.location.reload();
+        });
+
+        let docs = await getDocs(collection(db, "foods"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+            let image = row['image'];
+            let title = row['title'];
+            let star = row['star'];
+            let comment = row['comment'];
+
+            let temp_html = `              
+            <div class="col">
+                <div class="card">
+                    <img src="${image}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${star}</p>
+                        <p class="card-text">${comment}</p>
+                        <button type="button" class="btn btn-warning">주문하기</button>
+                    </div>
+                </div>
+            </div>`;
+            $('#card').append(temp_html);
+        });
+    </script>
 </head>
 
 <body>
@@ -308,94 +372,37 @@
         </div>
     </div>
 
-    <!-- 점보 트론 적용 jumbotron -->
-    <!-- - https://getbootstrap.com/
-    - Bootstrap 사이트에서 jumbotron가져와 vscode에 붙여 넣어주세요.
-    - 배경 이미지 적용을 위해 <div class="header"> 로 감싸주세요.
-    - jumbotron의 내용을 예시사진과 똑같게 내용을 변경해 주세요.
-        - 필요 없는 버튼, div를 적절하게 삭제
-    - jumbotron <h1> 태그안에 `Blank Han Sans` 폰트 스타일을 적용해 주세요. -->
-
-    <!-- 부트스트랩 인풋 박스 적용-->
     <div class="post" id="input-card">
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control" id="image" placeholder="name@example.com">
             <label for="floatingInput">음식 이미지 주소</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="foodTitle" placeholder="음식명">
+            <input type="text" class="form-control" id="title" placeholder="음식명">
             <label for="foodTitle">음식명</label>
         </div>
         <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="button">별점</button>
-            <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+            <select class="form-select" id="star" aria-label="Example select with button addon">
                 <option selected>별점 선택</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="⭐">⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
             </select>
         </div>
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
             <label for="floatingTextarea">추천 이유</label>
         </div>
         <div class="button2">
-            <button type="button" class="btn btn-danger" id="addBtn"> 기록하기 </button>
+            <button id="postingbtn" type="button" class="btn btn-danger"> 기록하기 </button>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <!-- 부트스트랩 카드 적용-->
-    <div class="mycards">
-        <!-- - https://getbootstrap.com/
-        - Bootstrap 사이트에서 cards 가져와 vscode에 붙여 넣기
-        - *Docs → Card → Grid cards에서 3번째 코드입니다.*
-        - <button> 태그를 생성해 주세요.
-        - <button> 태그안에 `card-button` 클래스를 부여해 주세요.
-        - 카드에 내용은 자유롭게 채워 주세요. -->
     </div>
 
     <div class="mycards">
         <div id="card" class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESTftYVeMlogV_AaQ5GVRwUdikmRmMVPzrw&s"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">하와이안 피자</h5>
-                        <p class="card-text">⭐⭐⭐⭐</p>
-                        <p class="card-text">이건 꼭 먹어봐야해!</p>
-                        <button type="button" class="btn btn-warning">주문하기</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvwT7CB7dICnieQ1FYSOf1KN7CotisUL4Y7g&s"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">크리스피 버거</h5>
-                        <p class="card-text">⭐⭐⭐</p>
-                        <p class="card-text">최고의 수제버거!</p>
-                        <button type="button" class="btn btn-warning">주문하기</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://www.sk5.co.kr/neo/ns200/100/10014922.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">해물라면</h5>
-                        <p class="card-text">⭐⭐⭐⭐⭐</p>
-                        <p class="card-text">국물이 아주 시원해요</p>
-                        <button type="button" class="btn btn-warning">주문하기</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -443,4 +450,5 @@
         </footer>
     </div>
 </body>
+
 </html>
