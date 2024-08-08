@@ -11,6 +11,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -24,39 +26,26 @@
             background-color: black;
         }
 
-        img {
-            width: 100%;
-            max-height: 600px;
-            object-fit: cover;
-        }
-
-        .swiper {
-            padding-top: 00px;
-        }
-
-        .mySwiper {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .icon {
-            height: 80px;
-        }
-
+        /*팀 이름*/
         .TeamName {
-            font-size: 55px;
-            margin-left: -152px;
+            font-size: 150px;
+            margin-left: -70px;
         }
 
+        /*로그인 바*/
         .LoginBar {
             margin-right: -152px;
         }
 
+        /*메뉴 텍스트*/
+        .container {
+            margin: 280px 0px 0px 250px;
+        }
+
         .Menutext {
             color: white;
-
             font-size: 30px;
-            margin: 40px 0px 0px 50px;
+            margin: 50px 0px 0px 50px;
             text-align: center;
             word-spacing: 230px;
         }
@@ -78,69 +67,283 @@
             color: #636363;
         }
 
-        .MemberBackgroundImg {
+        /*Video BackGround*/
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            opacity: 0.08;
+        }
+
+        .bg-video__content {
+            height: 100%;
+            width: 100%;
+
+            /* background-size: cover 와 비슷함. (HTML 요소 or 비디오와 작동) */
             object-fit: cover;
-            width: 1200px;            
-            height: 1200px;                        
-            margin: 0px auto 0px auto;
         }
-        
-        .MemberImg {
-            object-fit: cover;
-            width: 320px;            
-            height: 300px;                        
-            margin: -1185px 0px 0px 360px;
+
+        /*회원가입 창*/
+        .sign_up {
+            width: 500px;
+            margin: 20px 0px 0px 20px;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px transparent;
+            background-color: wheat;
         }
-        
-        #MemberTextBox_Name {
-            background-color: gray;
-            width: 400px;
-            margin: -250px 0px 0px 700px;
-            padding: 10px 0px 0px 0px;
+
+        #sign_up_box {
+            width: 500px;
+            margin: -365px 0px 0px 1100px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            float: left;
         }
-        #MemberTextBox_WorkStyle {
-            background-color: gray;
-            width: 400px;
-            margin: -76px 0px 0px 1120px;
-            padding: 10px 0px 0px 0px;
+
+        .form-floating input,
+        .form-floating textarea {
+            color: black;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
         }
-        #MemberTextBox_MBTI {
-            background-color: gray;
-            width: 400px;
-            margin: 50px 0px 0px 700px;
-            padding: 10px 0px 0px 0px;
+
+        .button2 {
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 25px;
+            margin-top: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
         }
-        #MemberTextBox_Intro {
-            background-color: gray;
-            width: 400px;
-            margin: -76px 0px 0px 1120px;
-            padding: 10px 0px 0px 0px;
+          
+        /*멤버 카드*/
+        .MyCards {
+            width: 1280px;
+            height: 720px;
+            margin: 20px auto 20px auto;
+            border: 1px solid white;
+            padding: 20px;
+            border-radius: 5px;
         }
-        #MemberTextBox_Adv {
-            background-color: gray;
-            width: 400px;
-            margin: 50px 0px 0px 700px;
-            padding: 10px 0px 0px 0px;
+
+        .form-floating>input {
+            background-color: transparent;
+            color: white;
         }
-        #MemberTextBox_Git {
-            background-color: gray;
-            width: 400px;
-            margin: -76px 0px 0px 1120px;
-            padding: 10px 0px 0px 0px;
+
+        .form-floating>label {
+            color: white;
         }
-        #MemberTextBox_Game {
-            background-color: gray;
-            width: 400px;
-            margin: 50px 0px 0px 700px;
-            padding: 10px 0px 0px 0px;
+
+        .input-group>label {
+            background-color: transparent;
+            color: white;
         }
-        #MemberTextBox_Blog {
-            background-color: gray;
-            width: 400px;
-            margin: -76px 0px 0px 1120px;
-            padding: 10px 0px 0px 0px;
+
+        .MyCards #MyImage {
+            width: 450px;
+            height: 680px;
+            border: solid 2px;
+            border-radius: 5px;
+            border-color: #f0f0f0;
+        }
+
+        .MyCards #MyImageData {
+            width: 300px;
+            margin-top: 325px;
+            margin-left: 70px;
+        }
+
+        .MyCards #MyName {
+            width: 390px;
+            margin-top: -655px;
+            margin-left: 460px;
+        }
+
+        .MyCards #MyBlog {
+            width: 390px;
+            margin-left: 460px;
+        }
+
+        .MyCards #MyGithub {
+            width: 390px;
+            margin-top: -74px;
+            margin-left: 860px;
+        }
+
+        .MyCards #MyMBTI {
+            width: 390px;
+            margin-top: 100px;
+            margin-left: 460px;
+        }
+
+        .MyCards #MyIntroduce {
+            width: 790px;
+            margin-left: 460px;
+        }
+
+        .MyCards #MyStrength {
+            width: 790px;
+            margin-left: 460px;
+        }
+
+        .MyCards #MyFavoriteGame {
+            width: 790px;
+            margin-left: 460px;
+        }
+
+        .MyCards>button {
+            width: 10%;
+            margin-top: 30px;
+            margin-left: 1126px;
         }
     </style>
+    <script type="module">
+        // 스크립트 import
+        import {GetID, GetPW, SetID, SetPW} from './CurrentAccount.js';
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { doc, updateDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7NQM6XOTHUXPlJW3Lyb4rEXpkISbtdtI",
+            authDomain: "sparta-622b5.firebaseapp.com",
+            projectId: "sparta-622b5",
+            storageBucket: "sparta-622b5.appspot.com",
+            messagingSenderId: "215731223046",
+            appId: "1:215731223046:web:1f0f6a464a77e176e26187",
+            measurementId: "G-BDEQHQ5263"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 초기화시 회원 가입 박스 숨김
+        $(document).ready(function () {
+            $('#sign_up_box').toggle();
+            $('#MyCard_box').toggle();            
+        });
+
+        // 로그인 창에서 회원가입 버튼 클릭시 회원 가입 박스와 로그인 박스 토글
+        $("#sign_up_btn").click(async function () {
+            $('#ID_box').toggle();
+            $('#PW_box').toggle();
+            $('#Login_btn').toggle();
+            $('#sign_up_btn').toggle();
+            $('#sign_up_box').toggle();
+        });
+
+        // 회원가입 창에서 회원 가입 버튼 클릭시 회원 가입 박스와 로그인 박스 토글
+        $("#join_btn").click(async function () {
+            $('#ID_box').toggle();
+            $('#PW_box').toggle();
+            $('#Login_btn').toggle();
+            $('#sign_up_btn').toggle();
+            $('#sign_up_box').toggle();
+
+            let Account_ID = $('#Account_ID').val();
+            let Account_PW = $('#Account_PW').val();
+            let MyImageData = '';
+            let MyNameData = '';
+            let MyBlogData = '';
+            let MyGithubData = '';
+            let MyMBTIData = '';
+            let MyIntroduceData = '';
+            let MyStrengthData = '';
+            let MyFavoriteGameData = '';
+
+            let doc = {
+                'Account_ID': Account_ID,
+                'Account_PW': Account_PW,
+                'MyImageData': MyImageData,
+                'MyNameData': MyNameData,
+                'MyBlogData': MyBlogData,
+                'MyGithubData': MyGithubData,
+                'MyMBTIData': MyMBTIData,
+                'MyIntroduceData': MyIntroduceData,
+                'MyStrengthData': MyStrengthData,
+                'MyFavoriteGameData': MyFavoriteGameData,
+            };
+            await addDoc(collection(db, "1st_MiniProJect_Account"), doc);
+            alert('저장 완료!(아이디 중복 체크 및 문자열 공백 체크 등 예외 처리 안함)');
+            window.location.reload();
+        });
+
+        // 회원가입 창에서 취소 버튼 클릭시 회원 가입 박스와 로그인 박스 토글
+        $("#cancle_btn").click(async function () {
+            $('#ID_box').toggle();
+            $('#PW_box').toggle();
+            $('#Login_btn').toggle();
+            $('#sign_up_btn').toggle();
+            $('#sign_up_box').toggle();
+        });
+
+        // 로그인 창에서 로그인 버튼 클릭시
+        $("#Login_btn").click(async function () {
+            let docs = await getDocs(collection(db, "1st_MiniProJect_Account"));
+            docs.forEach((doc) => {
+                let row = doc.data();
+                if ((row['Account_ID'] == $('#Input_ID').val()) && (row['Account_PW'] == $('#Input_PW').val())) {                 
+                    SetID(row['Account_ID']);
+                    SetPW(row['Account_PW']);                         
+                    $('#MyCard_box').toggle();
+                }
+                else {
+                    alert('아이디 혹은 비밀 번호가 틀립니다!');                
+                    window.location.reload();
+                }
+            });
+        });
+
+        // 멤버 카드 정보 저장
+        $("#JoinSave").click(async function () {            
+            let docs = await getDocs(collection(db, "1st_MiniProJect_Account"));
+            let DocID, MyImageData, MyNameData, MyBlogData, MyGithubData, MyMBTIData, MyIntroduceData, MyStrengthData, MyFavoriteGameData;
+            docs.forEach((doc) => {                
+                let row = doc.data();                
+                if ((GetID() == row['Account_ID']) && (GetPW() == row['Account_PW'])) {
+                    DocID = doc.id;
+                    MyImageData = $('#MyImageData').val();
+                    MyNameData = $('#MyNameData').val();
+                    MyBlogData = $('#MyBlogData').val();
+                    MyGithubData = $('#MyGithubData').val();
+                    MyMBTIData = $('#MyMBTIData').val();
+                    MyIntroduceData = $('#MyIntroduceData').val();
+                    MyStrengthData = $('#MyStrengthData').val();
+                    MyFavoriteGameData = $('#MyFavoriteGameData').val();
+                }                
+            });            
+            const update_doc = doc(db, "1st_MiniProJect_Account", DocID)
+            await updateDoc(update_doc, {
+                        'MyImageData': MyImageData,
+                        'MyNameData': MyNameData,
+                        'MyBlogData': MyBlogData,
+                        'MyGithubData': MyGithubData,
+                        'MyMBTIData': MyMBTIData,
+                        'MyIntroduceData': MyIntroduceData,
+                        'MyStrengthData': MyStrengthData,
+                        'MyFavoriteGameData': MyFavoriteGameData,
+                    });
+            alert('저장 완료!(예외 처리 안함)');
+        });
+    </script>
 </head>
 
 <body>
@@ -153,23 +356,22 @@
                         <li><a href="#" class="nav-link px-2 text-danger">Super I들</a></li>
                     </div>
                 </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="ID">
-                    <input type="ID" class="form-control form-control-dark text-bg-dark" placeholder="ID..."
-                        aria-label="ID">
+                <form id="ID_box" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="ID">
+                    <input id="Input_ID" type="ID" class="form-control form-control-dark text-bg-dark"
+                        placeholder="ID..." aria-label="ID">
                 </form>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="PW">
-                    <input type="PW" class="form-control form-control-dark text-bg-dark" placeholder="PW..."
-                        aria-label="PW">
+                <form id="PW_box" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="PW">
+                    <input id="Input_PW" type="PW" class="form-control form-control-dark text-bg-dark"
+                        placeholder="PW..." aria-label="PW">
                 </form>
                 <div class="LoginBar">
                     <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2">Login</button>
-                        <button type="button" class="btn btn-danger">Sign-up</button>
+                        <button id="Login_btn" type="button" class="btn btn-outline-light me-2">Login</button>
+                        <button id="sign_up_btn" type="button" class="btn btn-danger">Sign-up</button>
                     </div>
                 </div>
             </div>
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-
                 <div class="Menutext">
                     <ul>
                         <li><a href="01_Home.html" Id="HomeText">Home</a></li>
@@ -181,53 +383,65 @@
             </div>
         </div>
     </header>
-    
-    <!-- Join Member -->
-    <div class="MemberBackgroundImg">
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJEAmgMBIgACEQEDEQH/xAAVAAEBAAAAAAAAAAAAAAAAAAAAB//EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AuIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z">
+
+    <!-- Video BackGround -->
+    <div class="bg-video">
+        <video class="bg-video__content" autoplay muted loop>
+            <source src="\11_Video\Unity2D_Survive.mp4" type="video/mp4" />
+        </video>
     </div>
-    <div class="MemberImg">
-        <img src="https://us.123rf.com/450wm/claudiodivizia/claudiodivizia1701/claudiodivizia170100048/70092411-%EB%B0%B0%EA%B2%BD-%EC%84%B8%EB%A1%9C%EB%A1%9C-%EC%9C%A0%EC%9A%A9%ED%95%9C-%EC%A7%99%EC%9D%80-%ED%9A%8C%EC%83%89-%EC%83%89%EC%A7%80.jpg">
-    </div>
-    <div class="card" id="MemberTextBox_Name">
-        <div class="card-body">
-            <h5 class="card-title">이름</h5>
+
+    <!-- Sign Up -->
+    <div class="sign_up" id="sign_up_box">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Account_ID" placeholder="음식명">
+            <label for="foodTitle">아이디</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="Account_PW"></textarea>
+            <label for="floatingTextarea">패스워드</label>
+        </div>
+        <div class="button2">
+            <button id="join_btn" type="Joinbutton" class="btn btn-danger"> 계정 만들기 </button>
+            <button id="cancle_btn" type="Canclebutton" class="btn btn-outline-secondary"> 취소 </button>
         </div>
     </div>
-    <div class="card" id="MemberTextBox_WorkStyle">
-        <div class="card-body">
-            <h5 class="card-title">협업 스타일</h5>
+
+    <!-- Member Card -->
+    <div class="MyCards" id="MyCard_box">
+        <div id="MyImage" class="form-floating mb-2">
+            <input id="MyImageData" type="file" class="btn btn-outline-light me-2">
         </div>
-    </div>
-    <div class="card" id="MemberTextBox_MBTI">
-        <div class="card-body">
-            <h5 class="card-title">MBTI</h5>
+        <div id="MyName" class="form-floating mb-3">
+            <input id="MyNameData" class="form-control" placeholder="이름">
+            <label for="floatingInput">이름</label>
         </div>
-    </div>
-    <div class="card" id="MemberTextBox_Intro">
-        <div class="card-body">
-            <h5 class="card-title">자기 소개</h5>
+        <div id="MyBlog" class="form-floating mb-3">
+            <input id="MyBlogData" class="form-control" placeholder="블로그">
+            <label for="floatingInput">블로그</label>
         </div>
-    </div>
-    <div class="card" id="MemberTextBox_Adv">
-        <div class="card-body">
-            <h5 class="card-title">장점</h5>
+        <div id="MyGithub" class="form-floating mb-3">
+            <input id="MyGithubData" class="form-control" placeholder="깃허브">
+            <label for="floatingInput">깃허브</label>
         </div>
-    </div>
-    <div class="card" id="MemberTextBox_Git">
-        <div class="card-body">
-            <h5 class="card-title">깃허브</h5>
+        <div id="MyMBTI" class="form-floating mb-3">
+            <input id="MyMBTIData" class="form-control" placeholder="MBTI">
+            <label for="floatingInput">MBTI</label>
         </div>
-    </div>
-    <div class="card" id="MemberTextBox_Game">
-        <div class="card-body">
-            <h5 class="card-title">좋아하는 게임</h5>
+        <div id="MyIntroduce" class="form-floating mb-3">
+            <input id="MyIntroduceData" class="form-control" placeholder="간단한 자기 소개">
+            <label for="floatingInput">간단한 자기 소개</label>
         </div>
-    </div>
-    <div class="card" id="MemberTextBox_Blog">
-        <div class="card-body">
-            <h5 class="card-title">블로그</h5>
+        <div id="MyStrength" class="form-floating mb-3">
+            <input id="MyStrengthData" class="form-control" placeholder="장점">
+            <label for="floatingInput">장점</label>
         </div>
+        <div id="MyFavoriteGame" class="form-floating mb-3">
+            <input id="MyFavoriteGameData" class="form-control" placeholder="가장 좋아하는 게임">
+            <label for="floatingInput">가장 좋아하는 게임</label>
+        </div>
+        <button id="JoinSave" type="button" class="btn btn-danger">저장하기</button>
     </div>
 </body>
+
 </html>

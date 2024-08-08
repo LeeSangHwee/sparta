@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>슈퍼 I들</title>
+    <title>Super I들</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -24,39 +26,35 @@
             background-color: black;
         }
 
+        /*슬라이드*/
         img {
-            width: 100%;
-            max-height: 600px;
+            width: 405px;
+            height: 720px;
             object-fit: cover;
         }
 
         .swiper {
-            padding-top: 00px;
+            width: 405px;
+            height: 720px;
+            margin: -715px 0px 0px 360px;
         }
 
-        .mySwiper {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .icon {
-            height: 80px;
-        }
-
+        /*팀 이름*/
         .TeamName {
-            font-size: 55px;
+            font-size: 70px;
             margin-left: -152px;
         }
 
+        /*로그인 바*/
         .LoginBar {
             margin-right: -152px;
         }
 
+        /*메뉴 텍스트*/
         .Menutext {
             color: white;
-
             font-size: 30px;
-            margin: 40px 0px 0px 50px;
+            margin: 0px 0px 0px 50px;
             text-align: center;
             word-spacing: 230px;
         }
@@ -77,7 +75,41 @@
         #HomeText {
             color: #636363;
         }
+
+        /*멤버 카드*/
+        .card {
+            color: black;
+            width: 405px;
+            height: 720px;
+        }
+
+        .card img {
+            height: 620px;            
+        }
     </style>
+    <script type="module" id="firebase_script">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7NQM6XOTHUXPlJW3Lyb4rEXpkISbtdtI",
+            authDomain: "sparta-622b5.firebaseapp.com",
+            projectId: "sparta-622b5",
+            storageBucket: "sparta-622b5.appspot.com",
+            messagingSenderId: "215731223046",
+            appId: "1:215731223046:web:1f0f6a464a77e176e26187",
+            measurementId: "G-BDEQHQ5263"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+    </script>
 </head>
 
 <body>
@@ -118,17 +150,138 @@
         </div>
     </header>
 
+    <!-- MainInfo -->
+    <div style="margin: 0px 0px 0px 215px; padding: 0px 0px 10px 600px; flex-grow: 0; flex-shrink: 0; width: 1300px;">
+        <div data-block-id="deec25ca-1441-4582-a188-bce415cae3f2" class="notion-selectable notion-column-block" style="display: flex; flex-direction: column;">
+            <!--Ground Rules-->
+            <div data-block-id="c7d105d2-8d32-4d7e-8df4-9132cfac18a5" class="notion-selectable notion-sub_sub_header-block" style="width: 100%; max-width: 100%; margin-top: 1em; margin-bottom: 1px;">
+                <div style="display: flex; width: 100%; color: inherit; fill: inherit;">
+                    <h4 spellcheck="false" placeholder="제목3" data-content-editable-leaf="true" contenteditable="false" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: transparent ;padding: 0px 0px 0px 0px; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-weight: 600; font-size: 1.25em; line-height: 1.3; margin: 0px;"><span style="font-weight:5" data-token-index="1" class="notion-enable-hover">🏝️ Ground Rules</span></h4>
+                </div>
+            </div>
+            <!--Ground Rules 항목 내용-->     
+            <div data-block-id="e02d0ca6-093b-486f-ad1f-2392ec1d1204" class="notion-selectable notion-code-block" style="width: 100%; max-width: 100%; margin-top: 4px; margin-bottom: 4px;">
+                <div style="display: flex;">
+                    <div contenteditable="false" data-content-editable-void="true" role="figure" aria-labelledby=":r3j:" style="flex-grow: 1; border-radius: 4px; text-align: left; position: relative; background: rgba(255, 255, 255, 0.03); min-width: 0px; width: 100%;">
+                        <div>
+                            <div class="line-numbers notion-code-block" style="display: flex; overflow-x: false;">
+                                <div spellcheck="false" autocorrect="off" autocapitalize="off" placeholder=" " data-content-editable-leaf="true" contenteditable="false" style="flex-grow: 1; flex-shrink: 1; text-align: left; font-family: Menlo; font-size: 100%; tab-size: 2; margin: 0px 0px -20px -120px; padding: 16px 16px 32px 12px; min-height: 1em; color: rgba(255, 255, 255, 0.81); white-space: pre;">
+                        1) T는 F한테 잘 공감하기, F는 T한테 공감바라지 않기
+                        2) 우리는 I니까 이름을 지목해서 질문하기
+                        3) 모르는 것을 부끄러워하지 않기
+                        4) 정말 모르겠는 것은 팀장한테 물어봐서 팀장이 알아내기 (캠프에 관함, 공부 X)
+                        5) 좋은 정보를 알았을 때 혼자만 알지 않기
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+            </div>
+            <!--Goals-->
+            <div data-block-id="c7d105d2-8d32-4d7e-8df4-9132cfac18a5" class="notion-selectable notion-sub_sub_header-block" style="width: 100%; max-width: 100%; margin-top: 2em; margin-bottom: 1px;">
+                <div style="display: flex; width: 100%; color: inherit; fill: inherit;">
+                    <h4 spellcheck="false" placeholder="제목3" data-content-editable-leaf="true" contenteditable="false" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: transparent ;padding: 0px 0px 0px 0px; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-weight: 600; font-size: 1.25em; line-height: 1.3; margin: 0px;"><span style="font-weight:5" data-token-index="1" class="notion-enable-hover">🚩 Goals</span></h4>
+                </div>
+            </div>     
+            <!--Goals 항목 내용-->     
+            <div data-block-id="e02d0ca6-093b-486f-ad1f-2392ec1d1204" class="notion-selectable notion-code-block" style="width: 100%; max-width: 100%; margin-top: 4px; margin-bottom: 4px;">
+                <div style="display: flex;">
+                    <div contenteditable="false" data-content-editable-void="true" role="figure" aria-labelledby=":r3j:" style="flex-grow: 1; border-radius: 4px; text-align: left; position: relative; background: rgba(255, 255, 255, 0.03); min-width: 0px; width: 100%;">
+                        <div>
+                            <div class="line-numbers notion-code-block" style="display: flex; overflow-x: false;">
+                                <div spellcheck="false" autocorrect="off" autocapitalize="off" placeholder=" " data-content-editable-leaf="true" contenteditable="false" style="flex-grow: 1; flex-shrink: 1; text-align: left; font-family: Menlo; font-size: 100%; tab-size: 2; margin: 0px 0px -20px -120px; padding: 16px 16px 32px 12px; min-height: 1em; color: rgba(255, 255, 255, 0.81); white-space: pre;">
+                        1) 최종 완성: 2024/08/08/목 자정까지를 목표로
+                        2) 기능에 CRUD 넣기, fetch는 기본
+                        3) 배우지 않은 것도 검색해보며 구현 해보기
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--회의-->
+            <div data-block-id="c7d105d2-8d32-4d7e-8df4-9132cfac18a5" class="notion-selectable notion-sub_sub_header-block" style="width: 100%; max-width: 100%; margin-top: 2em; margin-bottom: 1px;">
+                <div style="display: flex; width: 100%; color: inherit; fill: inherit;">
+                    <h4 spellcheck="false" placeholder="제목3" data-content-editable-leaf="true" contenteditable="false" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: transparent ;padding: 0px 0px 0px 0px; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-weight: 600; font-size: 1.25em; line-height: 1.3; margin: 0px;"><span style="font-weight:5" data-token-index="1" class="notion-enable-hover">🕑 회의</span></h4>
+                </div>
+            </div>    
+            <!--회의 항목 내용-->
+            <div data-block-id="e02d0ca6-093b-486f-ad1f-2392ec1d1204" class="notion-selectable notion-code-block" style="width: 100%; max-width: 100%; margin-top: 4px; margin-bottom: 4px;">
+                <div style="display: flex;">
+                    <div contenteditable="false" data-content-editable-void="true" role="figure" aria-labelledby=":r3j:" style="flex-grow: 1; border-radius: 4px; text-align: left; position: relative; background: rgba(255, 255, 255, 0.03); min-width: 0px; width: 100%;">
+                        <div>
+                            <div class="line-numbers notion-code-block" style="display: flex; overflow-x: false;">
+                                <div spellcheck="false" autocorrect="off" autocapitalize="off" placeholder=" " data-content-editable-leaf="true" contenteditable="false" style="flex-grow: 1; flex-shrink: 1; text-align: left; font-family: Menlo; font-size: 100%; tab-size: 2; margin: 0px 0px -20px -120px; padding: 16px 16px 32px 12px; min-height: 1em; color: rgba(255, 255, 255, 0.81); white-space: pre;">
+                        1) 실시간으로 소통하되 정규적인 회의는 아래 시간 지키기
+                        2) 오전 9시 오늘 오전 목표 설정 및 구체화
+                        3) 오전 9시에 회의를 못했다면 아침 강의 끝나고 하기
+                        4) 오후 2시 오늘 오후 목표 설정 및 구체화
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Swiper -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="https://via.placeholder.com/1920x720?text=Slide+1">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://cdn-lostark.game.onstove.com/2018/obt/assets/images/m/information/class/bg_index_assassin.jpg?559993090520d0e8bf54" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">소울이터</h5>
+                            <p class="card-text">낫을 들고있는 암살자 캐릭터</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="https://via.placeholder.com/1920x720?text=Slide+2">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://cdn-lostark.game.onstove.com/2018/obt/assets/images/m/information/class/bg_detail_aeromancer.jpg?cbe212f854b666d9c56d" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">기상술사</h5>
+                            <p class="card-text">우산을 사용하는 스페셜리스트</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="https://via.placeholder.com/1920x720?text=Slide+3">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://cdn-lostark.game.onstove.com/2018/obt/assets/images/m/information/class/bg_detail_scouter.jpg?450df70528d775cbdfd7" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">스카우터</h5>
+                            <p class="card-text">드론을 이용하는 헌터 캐릭터</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://cdn-lostark.game.onstove.com/2018/obt/assets/images/m/information/class/bg_detail_warlord.jpg?4e580397b716a641105a" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">워로드</h5>
+                            <p class="card-text">방패로 아군을 수호하는 캐릭터</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://cdn-lostark.game.onstove.com/2018/obt/assets/images/m/information/class/bg_detail_bard.jpg?a4aeab5c3269aada2e17" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">바드</h5>
+                            <p class="card-text">하프로 아군에게 버프를 주는 캐릭터</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="swiper-button-next"></div>
@@ -157,4 +310,5 @@
         });
     </script>
 </body>
+
 </html>
