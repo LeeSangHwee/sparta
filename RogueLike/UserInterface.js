@@ -6,10 +6,10 @@ export async function displayStatus(stage, player, monster) {
     console.log(
       chalk.cyanBright(`| Stage: ${stage} `) +
       chalk.blueBright(
-        `| Player HP: ${player.CurrentHp}, Attack: ${player.atk}-${player.atk + player.atk * player.atk_Multiplication} `,
+        `| Player HP: ${player.CurrentHp}, Attack: ${player.atk + 1}-${player.atk + player.atk * player.atk_Multiplication} `,
       ) +
       chalk.redBright(
-        `| Monster HP: ${monster.CurrentHp}, Attack: ${player.atk}-${player.atk + player.atk * player.atk_Multiplication} |`,
+        `| Monster HP: ${monster.CurrentHp}, Attack: ${player.atk + 1}-${player.atk + player.atk * player.atk_Multiplication} |`,
       ),
     );
     console.log(chalk.magentaBright(`=====================\n`));
