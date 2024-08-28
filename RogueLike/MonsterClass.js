@@ -2,6 +2,9 @@ import chalk from 'chalk';
 import { Object } from "./ObjectClass.js";
 
 export class Monster extends Object {
+    get getMonsterHitState() {//피격 상태 리턴
+        return this.HitState;
+    }
     get getMonsterDefState() {//방어 상태 리턴
         return this.def_State;
     }
@@ -15,9 +18,15 @@ export class Monster extends Object {
     set setMonsterATK_Double(AddAtkDouble) {// 연속 공격 확률 증가
         this.double_atk += AddAtkDouble;
     }
+    set setMonsterHitState(hitState) {//피격 상태 설정
+        this.HitState = hitState;
+    }
     set setMonsterHP_MAX_AND_CURRENT(AddHealth) {// 최대 체력 및 현재 증가
         this.MaxHp += AddHealth;
         this.CurrentHp += AddHealth;
+    }
+    set setMonsterDefState(defState) {//방어 상태 설정
+        this.def_State;
     }
     set setMonsterDEF(AddDef) {// 방어력 증가
         this.def += AddDef;

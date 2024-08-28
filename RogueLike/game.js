@@ -26,8 +26,9 @@ async function choiceFunc(logs, logsError, stage, player, monster) {
   // 플레이어와 몬스터 정보 출력 UI 함수 호출
   await displayStatus(stage, player, monster);
 
+  while(logs.length > 10) logs.shift();//로그 10줄 초과 삭제
   logs.forEach((log) => console.log(log));
-  logsError.forEach((log) => console.log(log));
+  logsError.forEach((log) => console.log(log));//에러 로그용 출력
 
   console.log(
     chalk.green(
@@ -40,21 +41,21 @@ async function choiceFunc(logs, logsError, stage, player, monster) {
 
 async function PlayerManager(logs, logsError, UserChoice, player, monster) {
   // 피격 상태
-  player.HitState = false;
+  player.setPlayerHitState = false;
 
-  // 행동 처리를 위한 플레이어 값 초기화
-  if (1 <= UserChoice && UserChoice <= 4) logs.push(chalk.green(`${UserChoice}를 선택하셨습니다.`));
+  //if (1 <= UserChoice && UserChoice <= 4) logs.push(chalk.green(`${UserChoice}를 선택하셨습니다.`));
 
   // 플레이어의 선택에 따른 함수 호출
   switch (Number(UserChoice)) {
     case eChoice.eATTACK: {// 일반공격                
-      monster.HitState = true;
+      monster.setMonsterHitState = true;
+      logs.push(chalk.red('pmonster.getMonsterHitState', monster.getMonsterHitState));
       let MonsterHitDamage = await monster.hit(await player.attack());      
       logs.push(chalk.cyan(`플레이어는 ${MonsterHitDamage} 데미지를 몬스터에게 입혔다!`));
       break;
     }
     case eChoice.eDOUBLE_ATK: {// 연속공격
-      monster.HitState = true;
+      monster.setMonsterHitState = true;
       let DoubleAtkPer = Math.floor(Math.random() * 100)// 연속 공격 확률 계산
       if (DoubleAtkPer < player.double_atk) { // 확률에 따라 연속 공격
         let MonsterHitDamage1 = await monster.hit(await player.attack());
@@ -62,14 +63,17 @@ async function PlayerManager(logs, logsError, UserChoice, player, monster) {
         logs.push(chalk.cyan(`플레이어는 ${MonsterHitDamage1} 데미지를 몬스터에게 입혔다!!`));
         logs.push(chalk.cyan(`플레이어는 ${MonsterHitDamage2} 데미지를 몬스터에게 입혔다!!`));
       }
+      else logs.push(chalk.red(`연속 공격 실패!!`));
       break;
     }
     case eChoice.eDEFENSE: {// 방어하기      
-      if(await player.defense() && player.HitState == true) {
+      logs.push(chalk.yellow(`플레이어는 방어태세에 들어갔다!!`));
+      if(await player.defense() && player.getPlayerHitState === true) {
         let MonsterHitDamage = await monster.hit(await player.attack() * 0.6);//방어 성공시 반격 데미지 = 공격력의 60%
         logs.push(chalk.cyan(`플레이어가 방어에 성공했다!!!`));
         logs.push(chalk.cyan(`플레이어는 반격으로인해 ${MonsterHitDamage} 데미지를 몬스터에게 입혔다!`));
       }
+      else if (await !player.defense() && player.getPlayerHitState === true) logs.push(chalk.red(`방어 실패!!`));
       break;
     }
     case eChoice.eRUNAWAY: {// 도망치기
@@ -96,18 +100,18 @@ async function MonsterManager(logs, logsError, player, monster) {
   const MonsterChoice = 3;//Math.floor(Math.random() * 3);
   let PlayerHitDamage = 0;
   // 피격 상태
-  monster.HitState = false;
+  monster.setMonsterHitState = false;
 
   // 몬스터의 선택에 따른 함수 호출
   switch (Number(MonsterChoice)) {
     case eChoice.eATTACK: {// 일반공격
-      player.HitState = true;
+      player.setPlayerHitState = true;
       PlayerHitDamage = await player.hit(await monster.attack());
       logs.push(chalk.red(`몬스터는 ${PlayerHitDamage} 데미지를 플레이어에게 입혔다!`));
       break;
     }
     case eChoice.eDOUBLE_ATK: {// 연속공격
-      player.HitState = true;
+      player.setPlayerHitState = true;
       let DoubleAtkPer = Math.floor(Math.random() * 100)// 연속 공격 확률 계산
       if (DoubleAtkPer < monster.double_atk) { // 확률에 따라 연속 공격
         let PlayerHitDamag1 = await player.hit(await monster.attack());
@@ -115,14 +119,19 @@ async function MonsterManager(logs, logsError, player, monster) {
         logs.push(chalk.red(`몬스터는 ${PlayerHitDamag1} 데미지를 플레이어에게 입혔다!!`));
         logs.push(chalk.red(`몬스터는 ${PlayerHitDamag2} 데미지를 플레이어에게 입었다!!`));
       }
+      else logs.push(chalk.cyan(`몬스터가 연속 공격에 실패했다!!`));
       break;
     }
     case eChoice.eDEFENSE: {// 방어하기
-      if(await monster.defense() && monster.HitState == true) {
+      logs.push(chalk.yellow(`몬스터가 방어태세에 들어갔다!!`));
+      logs.push(chalk.red('mmonster.getMonsterHitState', monster.getMonsterHitState));
+      
+      if(await monster.defense() && monster.getMonsterHitState === true) {
         PlayerHitDamage = await player.hit(await monster.attack() * 0.6);//방어 성공시 반격 데미지 = 공격력의 60%
         logs.push(chalk.red(`몬스터가 방어에 성공했다!!!`));
         logs.push(chalk.red(`플레이어는 반격으로 인해 ${PlayerHitDamage} 데미지를 입었다!`));
       }
+      else if (await !monster.defense() && monster.getMonsterHitState === true) logs.push(chalk.cyan(`몬스터가 방어에 실패했다!!`));
       break;
     }
     default: {// 예외처리 에러코드 호출용

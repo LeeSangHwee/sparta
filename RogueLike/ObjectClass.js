@@ -2,7 +2,7 @@
 export class Object {
   constructor() {
     this.atk = 10;                  // 최소 공격력
-    this.atk_Multiplication = 0.1;  // 최대 공격력 배율
+    this.atk_Multiplication = 2.0;  // 최대 공격력 배율
     this.double_atk = 10;           // 연속 공격 확률
     this.HitState = false;          // 피격 상태
     this.MaxHp = 100;               // 최대 체력
@@ -15,7 +15,7 @@ export class Object {
 
   // 오브젝트의 공격
   async attack() {
-    return Math.floor((Math.random() * (this.atk + this.atk * this.atk_Multiplication) + this.atk));// 공격 값 리턴
+    return Math.floor((Math.random() * ((this.atk * this.atk_Multiplication) - this.atk) + this.atk + 1));// 공격 값 리턴
   }
 
   // 오브젝트의 피격

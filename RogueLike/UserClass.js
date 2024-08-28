@@ -5,6 +5,9 @@ export class Player extends Object {
     get getPlayerATK_Double() {// 연속 공격 확률 리턴
         return this.double_atk;
     }
+    get getPlayerHitState() {//피격 상태 리턴
+        return this.HitState;
+    }
     get getPlayerHP_MAX() {// 최대 체력 값 리턴
         return this.MaxHp;
     }
@@ -30,12 +33,18 @@ export class Player extends Object {
     set setPlayerATK_Double(AddAtkDouble) {// 연속 공격 확률 증가
         this.double_atk += AddAtkDouble;
     }
+    set setPlayerHitState(hitState) {//피격 상태 설정
+        this.HitState = hitState;
+    }
     set setPlayerHP_CURRENT(AddHealth) {// 현재 체력 증가
         this.CurrentHp += AddHealth;
     }
     set setPlayerHP_MAX_AND_CURRENT(AddHealth) {// 최대 체력 및 현재 증가
         this.MaxHp += AddHealth;
         this.CurrentHp += AddHealth;
+    }
+    set setPlayerDefState(defState) {//방어 상태 설정
+        this.def_State;
     }
     set setPlayerDEF(AddDef) {// 방어력 증가
         this.def += AddDef;
